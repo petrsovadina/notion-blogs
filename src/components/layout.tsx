@@ -17,9 +17,13 @@ export default function Layout({ children }: LayoutProps) {
             <div className="flex">
               <Link
                 href="/"
-                className="flex items-center text-xl font-bold text-foreground font-space-mono"
+                className="flex items-center"
               >
-                Gesturs Blog
+                <img 
+                  src="https://i19jax5jy5.ufs.sh/f/c7c86d08-543f-47b5-bdb2-a7a1e426f825-t3fptr.dev.png"
+                  alt="Gesturs Blog Logo"
+                  className="h-8 w-auto"
+                />
               </Link>
             </div>
             <div className="flex items-center">

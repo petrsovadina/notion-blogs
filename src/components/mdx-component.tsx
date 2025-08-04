@@ -59,9 +59,9 @@ const components = {
         {String(children).replace(/\n$/, "")}
       </SyntaxHighlighter>
     ) : (
-      <Badge variant="pre" className="font-mono rounded-md text-sm">
+      <span className="inline-flex items-center rounded-md border border-transparent bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground font-mono">
         {children}
-      </Badge>
+      </span>
     );
   },
   pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
