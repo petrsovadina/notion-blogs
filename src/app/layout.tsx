@@ -1,10 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Space_Mono, Raleway, Open_Sans } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/layout";
 import { ThemeProvider } from "@/components/theme-provider";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"] });
+const spaceMono = Space_Mono({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-space-mono',
+  display: 'swap',
+});
+
+const raleway = Raleway({
+  subsets: ['latin'],
+  variable: '--font-raleway',
+  display: 'swap',
+});
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  variable: '--font-open-sans',
+  display: 'swap',
+});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://your-site.com";
 
@@ -69,8 +87,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+    <html 
+      lang="cs" 
+      suppressHydrationWarning
+      className={cn(
+        spaceMono.variable,
+        raleway.variable,
+        openSans.variable,
+        'scroll-smooth'
+      )}
+    >
+      <body className={cn(
+        'min-h-screen bg-background text-foreground font-raleway antialiased'
+      )}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

@@ -7,6 +7,10 @@ config({ path: '.env.local' });
 
 async function cachePosts() {
   try {
+    console.log('Environment check:');
+    console.log('NOTION_TOKEN exists:', !!process.env.NOTION_TOKEN);
+    console.log('NOTION_DATABASE_ID:', process.env.NOTION_DATABASE_ID);
+    
     console.log('Fetching posts from Notion...');
     const posts = await fetchPublishedPosts();
 

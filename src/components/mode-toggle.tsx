@@ -1,59 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import * as React from "react";
 
-interface ThemeToggleProps {
-  className?: string;
-}
-
-export function ModeToggle({ className }: ThemeToggleProps) {
-  const { setTheme, resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
+export function ModeToggle({
+  className,
+  ...props
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  const { theme, setTheme } = useTheme();
 
   return (
-    <div
-      className={cn(
-        "flex w-16 h-8 p-1 rounded-full cursor-pointer transition-all duration-300",
-        isDark
-          ? "bg-zinc-950 border border-zinc-800"
-          : "bg-white border border-zinc-200",
-        className
-      )}
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      role="button"
-      tabIndex={0}
+    <Button
+      variant="ghost"
+      type="button"
+      size="icon"
+      className={className}
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      {...props}
     >
-      <div className="flex justify-between items-center w-full">
-        <div
-          className={cn(
-            "flex justify-center items-center w-6 h-6 rounded-full transition-transform duration-300",
-            isDark
-              ? "transform translate-x-0 bg-zinc-800"
-              : "transform translate-x-8 bg-gray-200"
-          )}
-        >
-          {isDark ? (
-            <Moon className="w-4 h-4 text-white" strokeWidth={1.5} />
-          ) : (
-            <Sun className="w-4 h-4 text-gray-700" strokeWidth={1.5} />
-          )}
-        </div>
-        <div
-          className={cn(
-            "flex justify-center items-center w-6 h-6 rounded-full transition-transform duration-300",
-            isDark ? "bg-transparent" : "transform -translate-x-8"
-          )}
-        >
-          {isDark ? (
-            <Sun className="w-4 h-4 text-gray-500" strokeWidth={1.5} />
-          ) : (
-            <Moon className="w-4 h-4 text-black" strokeWidth={1.5} />
-          )}
-        </div>
-      </div>
-    </div>
+      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+      <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      <span className="sr-only">Toggle theme</span>
+    </Button>
   );
 }

@@ -61,16 +61,16 @@ export default function PostCard({ post }: PostCardProps) {
           </div>
         </div>
         <div className="group-hover:pr-8 transition-all duration-300">
-          <h2 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+          <h2 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors font-space-mono">
             {post.title}
           </h2>
           <ArrowUpRight className="absolute top-[7.5rem] right-6 h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-primary" />
         </div>
-        <p className="text-muted-foreground line-clamp-2">{post.description}</p>
+        <p className="text-muted-foreground line-clamp-2 font-open-sans">{post.description}</p>
       </CardHeader>
       <CardContent>
         {post.author && (
-          <p className="text-sm text-muted-foreground">By {post.author}</p>
+          <p className="text-sm text-muted-foreground font-open-sans">By {post.author}</p>
         )}
       </CardContent>
       {post.tags && post.tags.length > 0 && (
