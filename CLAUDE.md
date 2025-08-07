@@ -51,4 +51,8 @@ Databáze Notion musí mít tyto vlastnosti:
 - Používá Tailwind CSS s vlastní konfigurací
 - Komponenty shadcn/ui v `src/components/ui/`
 - Podpora tmavého režimu přes `next-themes`
-- Plugin pro typografii pro vykreslování obsahu markdown
+- Plugin pro typografii pro vykreslování obsahu markdown[byterover-mcp]
+
+# important 
+always use byterover-retrive-knowledge tool to get the related context before any tasks 
+always use byterover-store-knowledge to store all the critical informations after sucessful tasks
