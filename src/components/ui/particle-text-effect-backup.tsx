@@ -36,7 +36,7 @@ export default function ParticleTextEffect({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const particles = useRef<Particle[]>([]);
-  const animationFrameRef = useRef<number>();
+    const animationFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
