@@ -1,58 +1,58 @@
 # CLAUDE.md
 
-Tento soubor poskytuje pokyny pro Claude Code (claude.ai/code) při práci s kódem v tomto úložišti.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Příkazy pro vývoj
+## Development Commands
 
-- `pnpm run dev` - Spustí vývojový server s aktualizací mezipaměti a turbopackem
-- `pnpm run build` - Vytvoří produkční verzi s aktualizací mezipaměti
-- `pnpm start` - Spustí produkční server
-- `pnpm run lint` - Spustí linting Next.js
-- `pnpm run cache:posts` - Ručně obnoví cache příspěvků z Notion
+- `pnpm run dev` - Start development server with cache refresh and turbopack
+- `pnpm run build` - Build production version with cache refresh
+- `pnpm start` - Start production server
+- `pnpm run lint` - Run Next.js linting
+- `pnpm run cache:posts` - Manually refresh posts cache from Notion
 
-Příkaz `cache:posts` se automaticky spustí před dev a build, aby byl zajištěn aktuální obsah.
+The `cache:posts` command automatically runs before dev and build to ensure fresh content.
 
-## Přehled architektury
+## Architecture Overview
 
-Toto je blog Next.js 15+ poháněný Notion jako CMS. Architektura se řídí těmito klíčovými vzory:
+This is a Next.js 15+ blog powered by Notion as CMS. The architecture follows these key patterns:
 
-### Systém pro správu obsahu
-- **Integrace Notion**: Používá `@notionhq/client` k načtení obsahu z databáze Notion
-- **Strategie ukládání do mezipaměti**: Příspěvky jsou ukládány do mezipaměti lokálně v `posts-cache.json`, aby se zabránilo omezení rychlosti API
-- **Zpracování obsahu**: `notion-to-md` převádí stránky Notion na markdown pro vykreslení
+### Content Management System
+- **Notion Integration**: Uses `@notionhq/client` to fetch content from Notion database
+- **Caching Strategy**: Posts are cached locally in `posts-cache.json` to avoid API rate limits
+- **Content Processing**: `notion-to-md` converts Notion pages to markdown for rendering
 
-### Datový tok
-1. `scripts/cache-posts.ts` načítá publikované příspěvky z Notion a ukládá je do lokální mezipaměti
-2. `src/lib/notion.ts` poskytuje nástroje pro čtení z mezipaměti a interakci s API Notion
-3. Příspěvky jsou poskytovány z mezipaměti pro lepší výkon
+### Data Flow
+1. `scripts/cache-posts.ts` fetches published posts from Notion and stores them in local cache
+2. `src/lib/notion.ts` provides utilities for reading from cache and interacting with Notion API
+3. Posts are served from cache for better performance
 
-### Klíčové komponenty
-- `src/lib/notion.ts` - Základní integrace Notion a načítání dat
-- `scripts/cache-posts.ts` – skript pro ukládání do mezipaměti, který se spouští před build/dev
-- `src/app/posts/[slug]/page.tsx` – dynamické stránky příspěvků
-- `src/components/mdx-component.tsx` – vykreslování Markdownu s vlastními komponenty
+### Key Components
+- `src/lib/notion.ts` - Core Notion integration and data fetching
+- `scripts/cache-posts.ts` - Caching script that runs before build/dev
+- `src/app/posts/[slug]/page.tsx` - Dynamic post pages
+- `src/components/mdx-component.tsx` - Markdown rendering with custom components
 
-### Požadované proměnné prostředí
-- `NOTION_TOKEN` – token integrace Notion
-- `NOTION_DATABASE_ID` – ID databáze Notion obsahující příspěvky
-- `NEXT_PUBLIC_SITE_URL` – URL webu pro SEO a metadata
+### Required Environment Variables
+- `NOTION_TOKEN` - Notion integration token
+- `NOTION_DATABASE_ID` - ID of Notion database containing posts
+- `NEXT_PUBLIC_SITE_URL` - Site URL for SEO and metadata
 
-### Schéma databáze
-Databáze Notion musí mít tyto vlastnosti:
-- `Title` (název) – název příspěvku
-- `Status` (status) – stav publikace (musí být „Published“, aby se zobrazil)
-- `Published Date` (date) – datum publikace pro třídění
-- `Author` (people) – autor příspěvku
-- `Tags` (multi-select) – tagy příspěvku
-- `Category` (select) – kategorie příspěvku
-- `Featured Image` (url) – URL obrázku na obálce
+### Database Schema
+Notion database must have these properties:
+- `Title` (title) - Post title
+- `Status` (status) - Publication status (must be "Published" to appear)
+- `Published Date` (date) - Publication date for sorting
+- `Author` (people) - Post author
+- `Tags` (multi-select) - Post tags
+- `Category` (select) - Post category
+- `Featured Image` (url) - Cover image URL
 
-### Styl a uživatelské rozhraní
-- Používá Tailwind CSS s vlastní konfigurací
-- Komponenty shadcn/ui v `src/components/ui/`
-- Podpora tmavého režimu přes `next-themes`
-- Plugin pro typografii pro vykreslování obsahu markdown[byterover-mcp]
+### Styling and UI
+- Uses Tailwind CSS v4 with custom configuration
+- shadcn/ui components in `src/components/ui/`
+- Dark mode support via `next-themes`
+- Typography plugin for markdown content rendering
+- Custom typography system: Space Mono (headings), Raleway (body), Open Sans (paragraphs)
 
-# important 
-always use byterover-retrive-knowledge tool to get the related context before any tasks 
-always use byterover-store-knowledge to store all the critical informations after sucessful tasks
+### Visual Style Guide
+The project includes a complete visual style guide in `visual-style-guide/` directory that is excluded from builds but serves as reference material. This contains component examples, font documentation, and design system guidelines.
