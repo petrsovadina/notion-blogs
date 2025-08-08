@@ -22,7 +22,12 @@ export default function Layout({ children }: LayoutProps) {
                 <img 
                   src="https://i19jax5jy5.ufs.sh/f/c7c86d08-543f-47b5-bdb2-a7a1e426f825-t3fptr.dev.png"
                   alt="Gesturs Blog Logo"
-                  className="h-8 w-auto"
+                  className="h-8 w-auto block dark:hidden"
+                />
+                <img 
+                  src="https://i19jax5jy5.ufs.sh/f/z2Za8Zqs0NofWQee3Xg8IkPwAlRNsHM03E56iZhmaY7BQ1DT"
+                  alt="Gesturs Blog Logo"
+                  className="h-8 w-auto hidden dark:block"
                 />
               </Link>
             </div>
