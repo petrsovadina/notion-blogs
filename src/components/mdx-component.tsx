@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import Image, { type ImageProps } from "next/image";
-import type React from "react";
+import React from "react";
 import {
   Table,
   TableBody,
@@ -12,6 +12,7 @@ import {
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Badge } from "./ui/badge";
+import { VideoComponent } from "./video-component";
 
 const components = {
   h1: ({ children }: { children?: React.ReactNode }) => (
@@ -20,11 +21,18 @@ const components = {
   p: ({ children }: { children?: React.ReactNode }) => (
     <p className="mb-4">{children}</p>
   ),
-  a: ({ children, href }: { children?: React.ReactNode; href?: string }) => (
-    <a href={href} className="text-blue-500">
-      {children}
-    </a>
-  ),
+  a: ({ children, href }: { children?: React.ReactNode; href?: string }) => {
+    // Zkontroluj jestli je to YouTube video link s textem "video"
+    if (href && href.includes('youtube.com') && children === 'video') {
+      return <VideoComponent href={href} children={children} />;
+    }
+    
+    return (
+      <a href={href} className="text-blue-500">
+        {children}
+      </a>
+    );
+  },
   ul: ({ children }: { children?: React.ReactNode }) => (
     <ul className="mb-4 list-disc pl-5">{children}</ul>
   ),
