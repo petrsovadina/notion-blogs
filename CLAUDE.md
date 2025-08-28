@@ -55,8 +55,10 @@ Notion database must have these properties:
 - Custom typography system: Space Mono (headings), Raleway (body), Open Sans (paragraphs)
 
 ### Visual Style Guide
-The project includes a complete visual style guide in `visual-style-guide/` directory that is excluded from builds but serves as reference material. This contains component examples, font documentation, and design system guidelines.[byterover-mcp]
+The project includes a complete visual style guide in `visual-style-guide/` directory that is excluded from builds but serves as reference material. This contains component examples, font documentation, and design system guidelines.
 
-# important 
-always use byterover-retrive-knowledge tool to get the related context before any tasks 
-always use byterover-store-knowledge to store all the critical informations after sucessful tasks
+# important-instruction-reminders
+Do what has been asked; nothing more, nothing less.
+NEVER create files unless they're absolutely necessary for achieving your goal.
+ALWAYS prefer editing an existing file to creating a new one.
+NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
